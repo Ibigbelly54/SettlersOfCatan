@@ -8,6 +8,7 @@ public class BuildFrame extends JFrame{
     private BufferedImage tile;
 
     public BuildFrame(){
+        setSize(400, 400);
 
     }
 
