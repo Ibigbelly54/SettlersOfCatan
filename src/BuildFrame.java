@@ -9,7 +9,7 @@ public class BuildFrame extends JFrame{
 
     public BuildFrame(){
         setSize(400, 400);
-
+        //needs work lol
     }
 
 }
