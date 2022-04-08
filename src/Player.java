@@ -38,4 +38,12 @@ public class Player
     {
         return getDevCards();
     }
+    public void useDevelopmentCard(DevelopmentCard card)
+    {
+        if(devCards.contains(card))
+        {
+            card.use();
+            devCards.remove(card);
+        }
+    }
 }
