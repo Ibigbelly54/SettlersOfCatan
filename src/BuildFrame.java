@@ -30,12 +30,13 @@ public class BuildFrame extends JFrame{
 
     }
     public void buildRoad(Player player, int side){
-
+        buildType=0;
+        //panel.drawRect(side, side, 4,10);
     }
     public void buildSettlement(Player player, int x, int y){
-
+        buildType=1;
     }
     public void buildCity(Player player, int x, int y){
-
+        buildType=2;
     }
 }
