@@ -5,7 +5,7 @@ public class Runner {
     public static void main(String[] args)
     {
         output = new StartFrame();
-        build= new BuildFrame();
+        //build= new BuildFrame();
 
     }
     static StartFrame returnStartFrame(){
