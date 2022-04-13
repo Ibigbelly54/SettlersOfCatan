@@ -1,23 +1,29 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class StartPanel extends JPanel implements MouseListener {
+public class StartPanel extends JPanel implements ActionListener {
 
     private BufferedImage start;
+    private JButton button, helpButton;
 
     public StartPanel() {
         try {
-            start = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/startFrame.png")));
+            start = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/startFrame1.png")));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        button = new JButton("Start");
+        helpButton = new JButton("Help");
     }
 
     public void paint(Graphics g) {
@@ -26,27 +32,8 @@ public class StartPanel extends JPanel implements MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(helpButton))
+            new HelpMenu();
     }
 }
