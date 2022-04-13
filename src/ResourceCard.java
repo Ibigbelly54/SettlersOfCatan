@@ -6,8 +6,12 @@ public class ResourceCard {
 
     public ResourceCard(){}
 
-    public String getResource(){}
+    public String getResource(){
+        return type;
+    }
 
-    public BufferedImage getImage(){}
+    public BufferedImage getImage(){
+        return image;
+    }
 
 }
