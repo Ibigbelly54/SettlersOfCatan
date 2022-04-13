@@ -11,53 +11,23 @@ public class StartPanel extends JPanel implements MouseListener {
 
     private BufferedImage start;
 
-    public StartPanel(){
-        try{
+    public StartPanel() {
+        try {
             start = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/startFrame.png")));
 
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    private static JFrame frame;
-    private static final int WIDTH = 400;
-    private static final int HEIGHT = 400;
 
-    private Container win;
-
-    public StartPanel(){
-        super();
-        frame = new JFrame("StartPanel");
-        win = frame.getContentPane();
-        win.setLayout(null);
-
-        frame.setSize(400, 400);
-        frame.setVisible (true);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        try{
-            start = ImageIO.read(Objects.requireNonNull(StartPanel.class.getResource("/Image/startFrame.png")));
-
-        }
-        catch(IOException e){
-            System.out.print("error");
-        }
-        addMouseListener(this);
-
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.drawImage(start, 0, 0, getWidth(), getHeight(), null);
     }
-
-    public void paint(Graphics g)
-    {
-      //  super.paint(g);
-        g.drawImage(start, 20, 20, 200, 200, null);
-       // revalidate();
-    }
-
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
     }
 
     @Override
