@@ -8,6 +8,7 @@ public class RobFrame {
 
     public RobFrame(){
         panel = new JPanel();
+
         button = new JButton("Confirm");
         button.setSize(10,20);
         panel.add(button);
