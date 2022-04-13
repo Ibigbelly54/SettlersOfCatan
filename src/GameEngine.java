@@ -14,6 +14,7 @@ public class GameEngine {
     private int playerWon;
     private static TreeMap<Integer, Integer[][]> tokenMap;
     private static ArrayList<Port> ports;
+    private static ArrayList<Player> players;
 
 
     public GameEngine() {
@@ -27,6 +28,11 @@ public class GameEngine {
         // Create the various ports then randomly assign onto board??
         // 1 2:1 trade per resource, 4 3:1 trade anything
         portCreation();
+        players = new ArrayList<Player>();
+        players.add(new Player("blue"));
+        players.add(new Player("orange"));
+        players.add(new Player("magenta"));
+        players.add(new Player("yellow"));
 
     }
 
@@ -87,14 +93,7 @@ public class GameEngine {
         ports.add(port7);
         ports.add(port8);
         ports.add(port9);
-        // randomizes the configuration
-        for(int i=0; i<ports.size(); i++) {
-            int k = r.nextInt(ports.size());
-            Port temp1 = ports.get(k);
-            Port temp2 = ports.get(i);
-            ports.set(i, temp1);
-            ports.set(k, temp2);
-        }
+        Collections.shuffle(ports, r);
     }
 
     public static int[] getDice() { return dice; }
@@ -109,5 +108,8 @@ public class GameEngine {
     public static Port[] getPort() { return ports; }
     public static TreeMap<Integer, Integer[][]> getTokenMap() { return tokenMap; }
     public static MapTile[][] getBoard() { return board; }
+    public static ArrayList<Player> getPlayers() {
+        return players;
+    }
 
 }

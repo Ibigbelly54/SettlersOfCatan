@@ -1,6 +1,10 @@
+import java.awt.image.BufferedImage;
+
 public class KnightCard extends DevelopmentCard {
 
-    public KnightCard() {
+    private BufferedImage image;
 
+    public KnightCard() {
+        super("KnightCard");
     }
 }

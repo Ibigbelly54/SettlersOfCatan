@@ -1,3 +1,4 @@
+import javax.swing.plaf.multi.MultiOptionPaneUI;
 import java.util.ArrayList;
 
 public class Player
@@ -6,10 +7,15 @@ public class Player
     ArrayList<ResourceCard> playerHand;
     ArrayList<DevelopmentCard> devCards;
     int vp, cities, roads, settlements, knight;
+    private String color;
 
-    public Player()
+    public Player(String str)
     {
-
+        color = str;
+        vp = 0;
+        cities = 4;
+        settlements = 5;
+        roads = 15;
     }
     public void setVP(int vp) {
         this.vp = vp;
@@ -40,9 +46,25 @@ public class Player
     }
     public void useDevelopmentCard(DevelopmentCard card)
     {
+
+
         if(devCards.contains(card))
         {
-            card.use();
+            if(card.getResource().equals("Monopoly")) {
+                // put in graphics as response
+            }
+            if(card.getResource().equals("KnightCard")) {
+
+            }
+            if(card.getResource().equals("RoadBuilding")) {
+
+            }
+            if(card.getResource().equals("VictoryPoint")) {
+
+            }
+            if(card.getResource().equals("YearOfPlenty")) {
+
+            }
             devCards.remove(card);
         }
     }
