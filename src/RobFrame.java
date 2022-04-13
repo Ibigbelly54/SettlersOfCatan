@@ -6,7 +6,13 @@ public class RobFrame {
     private JPanel panel;
     private JButton button;
 
-    public RobFrame(){}
+    public RobFrame(){
+        panel = new JPanel();
+
+        button = new JButton("Confirm");
+        button.setSize(10,20);
+        panel.add(button);
+    }
 
     public void next(){}
 
