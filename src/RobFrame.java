@@ -1,4 +1,4 @@
-import javax.swing.*;
+/*import javax.swing.*;
 
 public class RobFrame {
     private int xLoc, yLoc;
@@ -20,4 +20,4 @@ public class RobFrame {
 
     public void steal(){}
 
-}
+}*/
