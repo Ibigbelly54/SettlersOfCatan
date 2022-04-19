@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class Helpmenu extends JFrame implements ActionListener {
-    private JButton back, pOne, pTwo, pThree, pFour, pFive, pSix, pSeven, pEight, n1;
+    private JButton back, pOne, pTwo, pThree, pFour, pFive, pSix, pSeven, pEight, pNine, pTen, pEleven, pTwelve, pThirteen;
     private JLabel heading, page, general,navigation;
     private static final int WIDTH = 1100;
     private static final int HEIGHT = 900;
@@ -20,7 +20,7 @@ public class Helpmenu extends JFrame implements ActionListener {
 
         page = new JLabel();page.setSize(500, 700);page.setLocation(150,100);
         win.add(page);
-        ImageIcon icon = new ImageIcon("src/Assets/HelpPages/pOne.png");
+        ImageIcon icon = new ImageIcon("src/Image/p1.png");
         page.setIcon(icon);
 
         back = new JButton("Back");
@@ -69,9 +69,9 @@ public class Helpmenu extends JFrame implements ActionListener {
         pEight.addActionListener(this);
         win.add(pEight);
 
-        n1 = new JButton("1");n1.setSize(50,35);n1.setFont(new Font("Arial", Font.BOLD, 12));n1.setForeground(new Color(98, 98, 103,255));n1.setLocation(900,100);
+        /*n1 = new JButton("1");n1.setSize(50,35);n1.setFont(new Font("Arial", Font.BOLD, 12));n1.setForeground(new Color(98, 98, 103,255));n1.setLocation(900,100);
         n1.addActionListener(this);
-        win.add(n1);
+        win.add(n1);*/
 
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -81,54 +81,54 @@ public class Helpmenu extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String link = "/Assets/HelpPages/" ;
+        String link = "/Image/" ;
         if(e.getSource()==pOne){
-            link+="pOne.PNG";
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(HelpMenu.class.getResource(link)));
+            link+="p1.PNG";
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Helpmenu.class.getResource(link)));
             page.setIcon(icon);
         }
         else if(e.getSource()==pTwo){
-            link+="pTwo.PNG";
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(HelpMenu.class.getResource(link)));
+            link+="p2.PNG";
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Helpmenu.class.getResource(link)));
             page.setIcon(icon);
         }
         else if(e.getSource()==pThree){
-            link+="pThree.PNG";
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(HelpMenu.class.getResource(link)));
+            link+="p3.PNG";
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Helpmenu.class.getResource(link)));
             page.setIcon(icon);
         }
         else if(e.getSource()==pFour){
-            link+="pFour.PNG";
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(HelpMenu.class.getResource(link)));
+            link+="p4.PNG";
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Helpmenu.class.getResource(link)));
             page.setIcon(icon);
         }
         else if(e.getSource()==pFive){
-            link+="pFive.PNG";
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(HelpMenu.class.getResource(link)));
+            link+="p5.PNG";
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Helpmenu.class.getResource(link)));
             page.setIcon(icon);
         }
         else if(e.getSource()==pSix){
-            link+="pSix.PNG";
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(HelpMenu.class.getResource(link)));
+            link+="p6.PNG";
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Helpmenu.class.getResource(link)));
             page.setIcon(icon);
         }
         else if(e.getSource()==pSeven){
-            link+="pSeven.PNG";
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(HelpMenu.class.getResource(link)));
+            link+="p7.PNG";
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Helpmenu.class.getResource(link)));
             page.setIcon(icon);
         }
         else if(e.getSource()==pEight){
-            link+="pEight.PNG";
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(HelpMenu.class.getResource(link)));
+            link+="p8.PNG";
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Helpmenu.class.getResource(link)));
             page.setIcon(icon);
         }
         else if(e.getSource()==back){
             dispose();
         }
-        else if(e.getSource()==n1){
+        /*else if(e.getSource()==n1){
             link+="new1.PNG";
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(HelpMenu.class.getResource(link)));
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Helpmenu.class.getResource(link)));
             page.setIcon(icon);
-        }
+        }*/
     }
 }
