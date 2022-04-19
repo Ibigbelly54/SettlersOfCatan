@@ -1,4 +1,3 @@
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
-
 
 public class StartFrame extends JFrame  implements ActionListener {
 
@@ -41,8 +39,6 @@ public class StartFrame extends JFrame  implements ActionListener {
             e.printStackTrace();
         }
 
-      //  panel = new StartPanel();
-      //  add(panel);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible (true);
         setResizable(false);
@@ -57,6 +53,6 @@ public class StartFrame extends JFrame  implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(helpButton))
-            System.out.print("help"); //new HelpMenu();
+           new Helpmenu();
     }
 }
