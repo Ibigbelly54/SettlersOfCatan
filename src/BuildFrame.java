@@ -14,6 +14,7 @@ public class BuildFrame extends JFrame{
     private int buildType;
 
     public BuildFrame(){
+        super("Build Frame");
         setSize(400, 400);
         setVisible (true);
         setResizable(false);
