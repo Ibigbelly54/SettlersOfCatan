@@ -16,5 +16,7 @@ public class Port {
     }
 
     public ArrayList<ResourceCard> getTrade() { return tradeList; }
-
+    public boolean isSpecialTrade() {
+        return specialTrade;
+    }
 }
