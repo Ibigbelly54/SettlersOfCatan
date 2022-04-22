@@ -10,12 +10,12 @@ public class GameFrame extends JFrame
     public GameFrame()
     {
         try{
-            wood = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/woodTile.png")));
-            brick = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/brickTile.png")));
-            desert = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/desertTile.png")));
-            ore = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/oreTile.png")));
-            sheep = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/sheepTile.png")));
-            wheat = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/wheatTile.png")));
+            wood = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/woodTile.png")));
+            brick = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/brickTile.png")));
+            desert = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/desertTile.png")));
+            ore = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/oreTile.png")));
+            sheep = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/sheepTile.png")));
+            wheat = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/wheatTile.png")));
         }
         catch(IOException e){
             System.out.print("error");

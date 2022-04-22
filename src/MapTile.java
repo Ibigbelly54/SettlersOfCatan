@@ -17,22 +17,22 @@ public class MapTile {
         if(isDesert) {
             desert = true;
             hasRobber = true;
-            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/desertTile.png")));
+            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/desertTile.png")));
         }
         else {
             desert = false;
             hasRobber = false;
         }
         if(type.equals("wood"))
-            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/woodTile.png")));
+            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/woodTile.png")));
         if(type.equals("brick"))
-            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/brickTile.png")));
+            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/brickTile.png")));
         if(type.equals("ore"))
-            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/oreTile.png")));
+            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/oreTile.png")));
         if(type.equals("sheep"))
-            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/sheepTile.png")));
+            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/sheepTile.png")));
         if(type.equals("wheat"))
-            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/wheatTile.png")));
+            image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/wheatTile.png")));
     }
 
     public void setRobber(boolean bool) {

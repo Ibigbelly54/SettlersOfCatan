@@ -15,7 +15,7 @@ public class BuildFrame extends JFrame{
 
     public BuildFrame(){
         super("Build Frame");
-        setSize(400, 400);
+        setSize(1000, 1000);
         setVisible (true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,12 +32,11 @@ public class BuildFrame extends JFrame{
         panel.add(button);
     }
     public void next(){
-
+        //go to game frame
     }
-    public void buildRoad(Player player, int side){
-        buildType=0;
+    public void buildRoad(Player player, int side){buildType=0;
         //panel.drawRect(side, side, 4,10);
-    }
+        }
     public void buildSettlement(Player player, int x, int y){
         buildType=1;
     }
