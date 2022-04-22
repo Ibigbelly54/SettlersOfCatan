@@ -6,6 +6,7 @@ public class RobFrame extends JFrame{
     private Player currentPlayer, stealPlayer;
     private JPanel panel;
     private JButton button;
+    private JLabel robber;
 
     public RobFrame(){
         super("Rob Frame");
@@ -22,6 +23,7 @@ public class RobFrame extends JFrame{
         button.setOpaque(true);
         button.setBorderPainted(false);
         button.setFont(new Font("Arial", Font.BOLD, 18));
+        robber = new JLabel();robber.setSize(642, 900);robber.setLocation(150,75);panel.add(robber);ImageIcon icon = new ImageIcon("src/Image/robber.png");robber.setIcon(icon);
         add(panel);
         panel.add(button);
     }
