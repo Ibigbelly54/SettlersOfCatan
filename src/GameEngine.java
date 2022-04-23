@@ -13,7 +13,7 @@ public class GameEngine {
     private static MapTile[][] board;
     private static boolean gameEnd;
     private static int playerWon;
-    private static TreeMap<Integer, Integer[][]> tokenMap;
+    private static TreeMap<Integer, ArrayList<Integer>> tokenMap;
     private static ArrayList<Port> ports;
     private static ArrayList<Player> players;
 
@@ -21,25 +21,27 @@ public class GameEngine {
     public GameEngine() {
         r = new Random();
         setup();
-//        initialRound();
+        initialRound();
 //        run();
-    }
+    } // NOT FINISHED
 
-
-
+    // CREATION/SETUP ////////////////////////////////////////////////////////////////////////////////////////////////////
     private void setup() {
         cardCreation();
         // Create the various ports then randomly assign onto board??
         // 1 2:1 trade per resource, 4 3:1 trade anything
         portCreation();
-        boardCreation();
+        try {
+            boardCreation();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         players = new ArrayList<Player>();
         players.add(new Player("blue"));
         players.add(new Player("orange"));
         players.add(new Player("magenta"));
         players.add(new Player("yellow"));
-    }
-
+    } // NOT FINISHED DEFINITELY NOT.
     private void cardCreation() {
         wool = new ResourceCard("wool");
         ore = new ResourceCard("ore");
@@ -93,8 +95,8 @@ public class GameEngine {
             developmentCardDeck.push(devCardSet.get(i));
         }
     }
-
     private void boardCreation() throws IOException {
+        tokenMap = new TreeMap<Integer, ArrayList<Integer>>();
         ArrayList<MapTile> mapTiles = new ArrayList<MapTile>();
         MapTile wood = new MapTile("wood", false);
         MapTile wool = new MapTile("wool", false);
@@ -132,10 +134,233 @@ public class GameEngine {
         ArrayList<Integer> tokens = new ArrayList<Integer>(Arrays.asList(5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11));
         //hardcode lol
         if(!board[0][0].isDesert()) {
-            board[0][0].setTokenValue(tokens.remove(0));
+            int val = tokens.remove(0);
+            board[0][0].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(0, 0)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 0, 0)));
+            }
         }
+        if(!board[1][0].isDesert()) {
+            int val = tokens.remove(0);
+            board[1][0].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(1, 0)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 1, 0)));
+            }
+        }
+        if(!board[2][0].isDesert()) {
+            int val = tokens.remove(0);
+            board[2][0].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(2, 0)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 2, 0)));
+            }
+        }
+        if(!board[3][0].isDesert()) {
+            int val = tokens.remove(0);
+            board[3][0].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(3, 0)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 3, 0)));
+            }
+        }
+        if(!board[4][0].isDesert()) {
+            int val = tokens.remove(0);
+            board[4][0].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(4, 0)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 4, 0)));
+            }
+        }
+        if(!board[4][1].isDesert()) {
+            int val = tokens.remove(0);
+            board[4][1].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(4, 1)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 4, 1)));
+            }
+        }
+        if(!board[4][2].isDesert()) {
+            int val = tokens.remove(0);
+            board[4][2].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(4, 2)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 4, 2)));
+            }        }
+        if(!board[3][3].isDesert()) {
+            int val = tokens.remove(0);
+            board[3][3].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(3, 3)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 3, 3)));
+            }        }
+        if(!board[2][4].isDesert()) {
+            int val = tokens.remove(0);
+            board[2][4].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(2, 4)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 2, 4)));
+            }        }
+        if(!board[1][3].isDesert()) {
+            int val = tokens.remove(0);
+            board[1][3].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(1, 3)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 1, 3)));
+            }        }
+        if(!board[0][2].isDesert()) {
+            int val = tokens.remove(0);
+            board[0][2].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(0, 2)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 0, 2)));
+            }        }
+        if(!board[0][1].isDesert()) {
+            int val = tokens.remove(0);
+            board[0][1].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(0, 1)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 0, 1)));
+            }        }
+        if(!board[1][1].isDesert()) {
+            int val = tokens.remove(0);
+            board[1][1].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(1, 1)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 1, 1)));
+            }        }
+        if(!board[2][1].isDesert()) {
+            int val = tokens.remove(0);
+            board[2][1].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(2, 1)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 2, 1)));
+            }        }
+        if(!board[3][1].isDesert()) {
+            int val = tokens.remove(0);
+            board[3][1].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(3, 1)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 3, 1)));
+            }        }
+        if(!board[3][2].isDesert()) {
+            int val = tokens.remove(0);
+            board[3][2].setTokenValue(val);
+            tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(3, 2)));
+        }
+        if(!board[2][3].isDesert()) {
+            int val = tokens.remove(0);
+            board[2][3].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(2, 3)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 2, 3)));
+            }        }
+        if(!board[1][2].isDesert()) {
+            int val = tokens.remove(0);
+            board[1][2].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(1, 2)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 1, 2)));
+            }        }
+        if(!board[2][2].isDesert()) {
+            int val = tokens.remove(0);
+            board[2][2].setTokenValue(val);
+            if(tokenMap.get(val) == null) {
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(2, 2)));
+            }
+            else if(tokenMap.get(val) != null) {
+                int one = tokenMap.get(val).get(0);
+                int two = tokenMap.get(val).get(1);
+                tokenMap.remove(val);
+                tokenMap.put(val, new ArrayList<Integer>(Arrays.asList(one, two, 2, 2)));
+            }        }
     }
-
     private void portCreation() {
         // creates ArrayList and Port instances
         ports = new ArrayList<Port>();
@@ -159,15 +384,38 @@ public class GameEngine {
         ports.add(port9);
         Collections.shuffle(ports, r);
     }
-    private void distributeResources() {
 
-    }
+    // RANDOM METHODS IDK GAME ENGINE STUFF ///////////////////////////////////////////////////////////////////////////////
+    private void distributeResources() {
+        if(!checkRobber()) {
+            ArrayList<Integer> positions = tokenMap.get(rollNum);
+            if(positions.size() == 4) {
+                int x1 = positions.get(0);
+                int y1 = positions.get(1);
+                int x2 = positions.get(2);
+                int y2 = positions.get(3);
+                if(!board[x1][y1].getRobber()) {
+                    // FINISH HERE I DONT WANT TO THINK ABOUT IT RN NEEDS TO CHECK SURROUNDING NODES OR SOMETHING IDK
+                }
+                if(!board[x2][y2].getRobber()) {
+
+                }
+            }
+            else {
+                int x = positions.get(0);
+                int y = positions.get(1);
+                if(!board[x][y].getRobber()) {
+
+                }
+            }
+        }
+    } // NOT FINISHED
+    public void initialRound() {} // HOW TO DO THIS SOBBING CRYING
     public static void roll() {
         dice[0] = r.nextInt(7);
         dice[1] = r.nextInt(7);
         rollNum = dice[0] + dice[1];
     }
-
     public static boolean steal(Player player, ResourceCard card) {
         if(player.getHand().contains(card)) {
             player.deleteCard(card);
@@ -176,7 +424,6 @@ public class GameEngine {
         }
         return false;
     }
-
     public static void moveRobber(int x, int y) {
         boolean stop = false;
         for(int r=0; r<5 && !stop; r++) {
@@ -189,7 +436,6 @@ public class GameEngine {
         }
         board[x][y].setRobber(true);
     }
-
     public static void removeSupply(ResourceCard card) {
         if(woolDeck.contains(card)) {
             woolDeck.remove(card);
@@ -209,7 +455,6 @@ public class GameEngine {
     }
 
     // ALL THE TRADE METHODS //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public static boolean SpecialPortTrade(Player player, int portLoc, ResourceCard gain) {
         ArrayList<ResourceCard> playerHand = player.getHand();
         ArrayList<ResourceCard> cardsTrade = ports.get(portLoc).getTrade();
@@ -231,7 +476,6 @@ public class GameEngine {
         }
         return false;
     }
-
     public static boolean portTrade(Player player, ArrayList<ResourceCard> test, ResourceCard gain) {
         ArrayList<ResourceCard> playerHand = player.getHand();
         ResourceCard cardCheck = test.get(0);
@@ -250,7 +494,6 @@ public class GameEngine {
         }
         return false;
     }
-
     public static void domesticTrade(Player player1, Player player2, ArrayList<ResourceCard> p1, ArrayList<ResourceCard> p2) {
         // needs to check logic if they are cheating/going against rules? nah
         for(int i=0; i<p1.size(); i++) {
@@ -262,7 +505,6 @@ public class GameEngine {
             player2.deleteCard(p2.get(i));
         }
     }
-
     public static boolean fourTrade(Player player, ResourceCard lost, ResourceCard gain) {
         ArrayList<ResourceCard> playerHand = player.getHand();
         int count = 0;
@@ -281,10 +523,7 @@ public class GameEngine {
         return false;
     }
 
-
-
     // CHECK METHODS //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     public static void check() {
         checkIfWin();
         checkLongestRoad();
@@ -301,7 +540,7 @@ public class GameEngine {
     }
     public static void checkLongestRoad() {
 
-    }
+    } // NOT FINISHED
     public static void checkLargestArmy() {
         int currentHolder = -1;
         int knightNum = -1;
@@ -324,31 +563,31 @@ public class GameEngine {
         }
         players.get(currentHolder).setLargestArmy(true);
     }
-
-    public static void checkRobber() {
+    public static boolean checkRobber() {
         if(rollNum == 7) {
+            return true;
             // GameFrame.callRobFrame(); ? something like that
         }
-    }
+        return false;
+    } // NOT FINISHED
 
-    // CHECK METHODS //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // BUILD METHODS //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public static boolean buildSettlement(Player player, int x, int y) {
         return false;
-    }
+    } // NOT FINISHED
     public static boolean buildCity(Player player, int x, int y) {
         return false;
-    }
+    } // NOT FINISHED
     public static boolean buildRoad(Player player, int x, int y) {
         return false;
-    }
+    } // NOT FINISHED
 
-
-
-    // GETTERS ?
+    // GETTERS
     public static ArrayList<Port> getPort() { return ports; }
-    public static TreeMap<Integer, Integer[][]> getTokenMap() { return tokenMap; }
+    public static TreeMap<Integer, ArrayList<Integer>> getTokenMap() { return tokenMap; }
     public static MapTile[][] getBoard() { return board; }
     public static ArrayList<Player> getPlayers() { return players; }
-
     public static int[] getDice() { return dice; }
+
+
 }
