@@ -1,4 +1,7 @@
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
 
 public class ResourceCard {
 
@@ -7,20 +10,24 @@ public class ResourceCard {
 
     public ResourceCard(String type) {
         resource = type;
-        if(resource.equals("wool")) {
-
-        }
-        if(resource.equals("wood")) {
-
-        }
-        if(resource.equals("wheat")) {
-
-        }
-        if(resource.equals("brick")) {
-
-        }
-        if(resource.equals("ore")) {
-
+        try {
+            if (resource.equals("wool")) {
+                image = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/wheatTile.png")));
+            }
+            if (resource.equals("wood")) {
+                image = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/wheatTile.png")));
+            }
+            if (resource.equals("wheat")) {
+                image = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/wheatTile.png")));
+            }
+            if (resource.equals("brick")) {
+                image = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/wheatTile.png")));
+            }
+            if (resource.equals("ore")) {
+                image = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/wheatTile.png")));
+            }
+        } catch(IOException e){
+            System.out.print("error");
         }
     }
 

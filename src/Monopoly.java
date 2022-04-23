@@ -14,9 +14,12 @@ public class Monopoly extends DevelopmentCard {
         int receiver = super.getPlayerPossesion();
         for(int i=0; i<players.size(); i++) {
             if(i != receiver) {
-                if (players.get(i).getHand().contains(card)) {
-                    players.get(i).getHand().remove(card);
-                    players.get(receiver).addCard(card);
+                ArrayList<ResourceCard> pDeck = players.get(i).getHand();
+                if (pDeck.contains(card)) {
+                    while(pDeck.contains(card)) {
+                        pDeck.remove(card);
+                        players.get(receiver).addCard(card);
+                    }
                 }
             }
         }

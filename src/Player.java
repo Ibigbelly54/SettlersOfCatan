@@ -67,9 +67,7 @@ public class Player
     }
     public void setLargestArmy(boolean bool) { largestArmy = bool; }
     public void setLongestRoad(boolean bool) { longestRoad = bool; }
-    public void setVP(int vp) {
-        this.vp = vp;
-    }
+    public void setVP(int x) { vp = x; }
 
 
     // GETTERS
