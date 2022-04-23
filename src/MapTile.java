@@ -38,4 +38,11 @@ public class MapTile {
     public void setRobber(boolean bool) {
         hasRobber = bool;
     }
+    public void setTokenValue(int num) { value = num; }
+    public String getResource() { return resource; }
+    public void addRoad(int side, int player) {
+
+    }
+    public int getToken() { return value; }
+    public boolean getRobber() { return hasRobber; }
 }

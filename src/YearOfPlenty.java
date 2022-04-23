@@ -13,5 +13,7 @@ public class YearOfPlenty extends DevelopmentCard {
     {
         year.addCard(one);
         year.addCard(two);
+        GameEngine.removeSupply(one);
+        GameEngine.removeSupply(two);
     }
 }

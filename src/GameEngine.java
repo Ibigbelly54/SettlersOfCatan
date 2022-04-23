@@ -3,15 +3,15 @@ import java.util.*;
 public class GameEngine {
 
     private ResourceCard wool, ore, wheat, wood, brick;
-    private Stack<ResourceCard> woolDeck, wheatDeck, brickDeck, oreDeck, woodDeck;
+    private static Stack<ResourceCard> woolDeck, wheatDeck, brickDeck, oreDeck, woodDeck;
     private Stack<DevelopmentCard> developmentCardDeck;
     private static Random r;
     private static int[] dice;
     private static int rollNum, currentPlayer;
     private SettlementNode[][] intersections;
     private static MapTile[][] board;
-    private boolean gameEnd;
-    private int playerWon;
+    private static boolean gameEnd;
+    private static int playerWon;
     private static TreeMap<Integer, Integer[][]> tokenMap;
     private static ArrayList<Port> ports;
     private static ArrayList<Player> players;
@@ -23,6 +23,8 @@ public class GameEngine {
 //        initialRound();
 //        run();
     }
+
+
 
     private void setup() {
         cardCreation();
@@ -96,14 +98,13 @@ public class GameEngine {
         ports.add(port9);
         Collections.shuffle(ports, r);
     }
-
-    public static int[] getDice() { return dice; }
     private void distributeResources() {
 
     }
     public static void roll() {
         dice[0] = r.nextInt(7);
         dice[1] = r.nextInt(7);
+        rollNum = dice[0] + dice[1];
     }
 
     public static boolean steal(Player player, ResourceCard card) {
@@ -114,6 +115,40 @@ public class GameEngine {
         }
         return false;
     }
+
+    public static void moveRobber(int x, int y) {
+        boolean stop = false;
+        for(int r=0; r<5 && !stop; r++) {
+            for(int c=0; c<5 && !stop; c++) {
+                if(board[r][c] != null && board[r][c].getRobber()) {
+                    board[r][c].setRobber(false);
+                    stop = true;
+                }
+            }
+        }
+        board[x][y].setRobber(true);
+    }
+
+    public static void removeSupply(ResourceCard card) {
+        if(woolDeck.contains(card)) {
+            woolDeck.remove(card);
+        }
+        else if(woodDeck.contains(card)) {
+            woodDeck.remove(card);
+        }
+        else if(wheatDeck.contains(card)) {
+            wheatDeck.remove(card);
+        }
+        else if(brickDeck.contains(card)) {
+            brickDeck.remove(card);
+        }
+        else if(oreDeck.contains(card)) {
+            oreDeck.remove(card);
+        }
+    }
+
+    // ALL THE TRADE METHODS //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public static boolean SpecialPortTrade(Player player, int portLoc, ResourceCard gain) {
         ArrayList<ResourceCard> playerHand = player.getHand();
         ArrayList<ResourceCard> cardsTrade = ports.get(portLoc).getTrade();
@@ -138,15 +173,121 @@ public class GameEngine {
 
     public static boolean portTrade(Player player, ArrayList<ResourceCard> test, ResourceCard gain) {
         ArrayList<ResourceCard> playerHand = player.getHand();
+        ResourceCard cardCheck = test.get(0);
+        int count = 0;
+        for(int j=0; j<test.size(); j++) {
+            if(test.contains(cardCheck) && count <= 3) {
+                count++;
+            }
+        }
+        if(count == 3) {
+            for(int i=0; i<3; i++) {
+                playerHand.remove(cardCheck);
+            }
+            player.addCard(gain);
+            return true;
+        }
+        return false;
+    }
+
+    public static void domesticTrade(Player player1, Player player2, ArrayList<ResourceCard> p1, ArrayList<ResourceCard> p2) {
+        // needs to check logic if they are cheating/going against rules? nah
+        for(int i=0; i<p1.size(); i++) {
+            player2.addCard(p1.get(i));
+            player1.deleteCard(p1.get(i));
+        }
+        for(int i=0; i<p2.size(); i++) {
+            player1.addCard(p2.get(i));
+            player2.deleteCard(p2.get(i));
+        }
+    }
+
+    public static boolean fourTrade(Player player, ResourceCard lost, ResourceCard gain) {
+        ArrayList<ResourceCard> playerHand = player.getHand();
+        int count = 0;
+        for(int i=0; i<playerHand.size(); i++) {
+            if(playerHand.get(i) == lost) {
+                count++;
+            }
+        }
+        if(count == 4) {
+            player.addCard(gain);
+            for(int i=0; i<4; i++) {
+                player.deleteCard(lost);
+            }
+            return true;
+        }
+        return false;
     }
 
 
 
-    public static Port[] getPort() { return ports; }
+    // CHECK METHODS //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static void check() {
+        checkIfWin();
+        checkLongestRoad();
+        checkLargestArmy();
+        checkRobber();
+    }
+    public static boolean checkIfWin() {
+        if(players.get(currentPlayer).getVP() >= 10) {
+            gameEnd = true;
+            playerWon = currentPlayer;
+            return true;
+        }
+        return false;
+    }
+    public static void checkLongestRoad() {
+
+    }
+    public static void checkLargestArmy() {
+        int currentHolder = -1;
+        int knightNum = -1;
+        for(int i=0; i<players.size(); i++) {
+            if(players.get(i).getLargestArmy()) {
+                currentHolder = i;
+                knightNum = players.get(i).getKnight();
+            }
+        }
+        for(int i=0; i<players.size(); i++) {
+            if(i != currentHolder) {
+                int check = players.get(i).getKnight();
+                if(check > knightNum) {
+                    players.get(currentHolder).setLargestArmy(false);
+                    currentHolder = i;
+                    knightNum = check;
+
+                }
+            }
+        }
+        players.get(currentHolder).setLargestArmy(true);
+    }
+
+    public static void checkRobber() {
+        if(rollNum == 7) {
+            // GameFrame.callRobFrame(); ? something like that
+        }
+    }
+
+    // CHECK METHODS //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public static boolean buildSettlement(Player player, int x, int y) {
+        return false;
+    }
+    public static boolean buildCity(Player player, int x, int y) {
+        return false;
+    }
+    public static boolean buildRoad(Player player, int x, int y) {
+        return false;
+    }
+
+
+
+    // GETTERS ?
+    public static ArrayList<Port> getPort() { return ports; }
     public static TreeMap<Integer, Integer[][]> getTokenMap() { return tokenMap; }
     public static MapTile[][] getBoard() { return board; }
-    public static ArrayList<Player> getPlayers() {
-        return players;
-    }
+    public static ArrayList<Player> getPlayers() { return players; }
 
+    public static int[] getDice() { return dice; }
 }

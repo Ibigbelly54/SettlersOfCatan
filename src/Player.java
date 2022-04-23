@@ -17,33 +17,23 @@ public class Player
         settlements = 5;
         roads = 15;
     }
-    public void setVP(int vp) {
-        this.vp = vp;
+
+
+    // PROBABLY NEEDED TO UPDATE THE VP COUNT WITH ALL CURRENT VARIABLES
+    public void updateVP() {
+
     }
-    public int getVP()
-    {
-        return vp;
-    }
+
+
+
+
+    // CARD STUFF
     public void addCard(ResourceCard card)
     {
         playerHand.add(card);
     }
-    public boolean deleteCard(ResourceCard card)
-    {
-        return playerHand.remove(card);
-    }
-    public void setKnight(int num)
-    {
-        knight=num;
-    }
-    public ArrayList<ResourceCard> getHand()
-    {
-        return playerHand;
-    }
-    public ArrayList<DevelopmentCard> getDevCards()
-    {
-        return getDevCards();
-    }
+    public boolean deleteCard(ResourceCard card) { return playerHand.remove(card); }
+
     public void useDevelopmentCard(DevelopmentCard card)
     {
 
@@ -68,4 +58,31 @@ public class Player
             devCards.remove(card);
         }
     }
+
+
+    // SETTERS
+    public void setKnight(int num)
+    {
+        knight=num;
+    }
+    public void setLargestArmy(boolean bool) { largestArmy = bool; }
+    public void setLongestRoad(boolean bool) { longestRoad = bool; }
+    public void setVP(int vp) {
+        this.vp = vp;
+    }
+
+
+    // GETTERS
+    public boolean getLargestArmy() { return largestArmy; }
+    public boolean getLongestRoad() { return longestRoad; }
+    public int getVP()
+    {
+        return vp;
+    }
+    public int getKnight() { return knight; }
+    public ArrayList<ResourceCard> getHand() { return playerHand; }
+    public ArrayList<DevelopmentCard> getDevCards() { return getDevCards(); }
+
+
+
 }
