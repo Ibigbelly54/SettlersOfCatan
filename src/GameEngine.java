@@ -1,14 +1,15 @@
+import java.io.IOException;
 import java.util.*;
 
 public class GameEngine {
 
     private ResourceCard wool, ore, wheat, wood, brick;
     private static Stack<ResourceCard> woolDeck, wheatDeck, brickDeck, oreDeck, woodDeck;
-    private Stack<DevelopmentCard> developmentCardDeck;
+    private static Stack<DevelopmentCard> developmentCardDeck;
     private static Random r;
     private static int[] dice;
     private static int rollNum, currentPlayer;
-    private SettlementNode[][] intersections;
+    private static SettlementNode[][] intersections;
     private static MapTile[][] board;
     private static boolean gameEnd;
     private static int playerWon;
@@ -31,12 +32,12 @@ public class GameEngine {
         // Create the various ports then randomly assign onto board??
         // 1 2:1 trade per resource, 4 3:1 trade anything
         portCreation();
+        boardCreation();
         players = new ArrayList<Player>();
         players.add(new Player("blue"));
         players.add(new Player("orange"));
         players.add(new Player("magenta"));
         players.add(new Player("yellow"));
-
     }
 
     private void cardCreation() {
@@ -72,7 +73,67 @@ public class GameEngine {
         DevelopmentCard vp4 = new VictoryPoint(4);
         DevelopmentCard vp5 = new VictoryPoint(5);
 
+        developmentCardDeck = new Stack<DevelopmentCard>();
+        ArrayList<DevelopmentCard> devCardSet = new ArrayList<DevelopmentCard>();
+        for(int i=0; i<14; i++) {
+            devCardSet.add(knight);
+        }
+        for(int i=0; i<2; i++) {
+            devCardSet.add(roadBuild);
+            devCardSet.add(yearPlenty);
+            devCardSet.add(monopoly);
+        }
+        devCardSet.add(vp1);
+        devCardSet.add(vp2);
+        devCardSet.add(vp3);
+        devCardSet.add(vp4);
+        devCardSet.add(vp5);
+        Collections.shuffle(devCardSet);
+        for(int i=0; i<devCardSet.size(); i++) {
+            developmentCardDeck.push(devCardSet.get(i));
+        }
+    }
 
+    private void boardCreation() throws IOException {
+        ArrayList<MapTile> mapTiles = new ArrayList<MapTile>();
+        MapTile wood = new MapTile("wood", false);
+        MapTile wool = new MapTile("wool", false);
+        MapTile wheat = new MapTile("wheat", false);
+        MapTile brick = new MapTile("brick", false);
+        MapTile ore = new MapTile("ore", false);
+        MapTile desert = new MapTile("desert", true);
+        for(int i=0; i<4; i++) {
+            mapTiles.add(wood);
+            mapTiles.add(wheat);
+            mapTiles.add(wool);
+        }
+        for(int i=0; i<3; i++) {
+            mapTiles.add(brick);
+            mapTiles.add(ore);
+        }
+        mapTiles.add(desert);
+        Collections.shuffle(mapTiles);
+        Stack<MapTile> mapTileStack = new Stack<MapTile>();
+        for(int i=0; i<mapTiles.size(); i++) {
+            mapTileStack.push(mapTiles.get(i));
+        }
+        board = new MapTile[5][5];
+        for(int i=0; i<3; i++) {
+            board[0][i] = mapTileStack.pop();
+            board[4][i] = mapTileStack.pop();
+        }
+        for(int i=0; i<4; i++) {
+            board[1][i] = mapTileStack.pop();
+            board[3][i] = mapTileStack.pop();
+        }
+        for(int i=0; i<5; i++) {
+            board[2][i] = mapTileStack.pop();
+        }
+        ArrayList<Integer> tokens = new ArrayList<Integer>(Arrays.asList(5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11));
+        //hardcode lol
+        if(!board[0][0].isDesert()) {
+            board[0][0].setTokenValue(tokens.remove(0));
+        }
     }
 
     private void portCreation() {

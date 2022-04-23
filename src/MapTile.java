@@ -11,9 +11,8 @@ public class MapTile {
     private int value;
     private int[] roads; // 0-4 player, pos out of 6 sides
 
-    public MapTile(String type, int val, boolean isDesert) throws IOException {
+    public MapTile(String type, boolean isDesert) throws IOException {
         resource = type;
-        value = val;
         if(isDesert) {
             desert = true;
             hasRobber = true;
@@ -29,7 +28,7 @@ public class MapTile {
             image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/brickTile.png")));
         if(type.equals("ore"))
             image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/oreTile.png")));
-        if(type.equals("sheep"))
+        if(type.equals("wool"))
             image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/sheepTile.png")));
         if(type.equals("wheat"))
             image=ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/Image/Tiles/wheatTile.png")));
@@ -45,4 +44,5 @@ public class MapTile {
     }
     public int getToken() { return value; }
     public boolean getRobber() { return hasRobber; }
+    public boolean isDesert() { return desert; }
 }
