@@ -24,9 +24,6 @@ public class Player
 
     }
 
-
-
-
     // CARD STUFF
     public void addCard(ResourceCard card)
     {
