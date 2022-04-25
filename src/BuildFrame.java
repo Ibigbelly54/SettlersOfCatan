@@ -18,6 +18,7 @@ public class BuildFrame extends JFrame{
         setSize(1000, 1000);
         setVisible (true);
         setResizable(false);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panel = new JPanel();
