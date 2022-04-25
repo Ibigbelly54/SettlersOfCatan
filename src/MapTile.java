@@ -45,4 +45,5 @@ public class MapTile {
     public int getToken() { return value; }
     public boolean getRobber() { return hasRobber; }
     public boolean isDesert() { return desert; }
+    public BufferedImage getImage() { return image; }
 }
