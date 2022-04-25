@@ -12,26 +12,35 @@ public class BuildFrame extends JFrame{
     private JPanel panel;
     private JButton button;
     private int buildType;
+    private Container win;
 
     public BuildFrame(){
         super("Build Frame");
+        win = getContentPane();
+        win.setLayout(null);
+
         setSize(1000, 1000);
         setVisible (true);
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panel = new JPanel();
-        panel.setSize(50,50);
+      //  panel = new JPanel();
+      //  panel.setSize(500,1000);
         button = new JButton("Confirm");
-        button.setSize(50,10);
+        button.setSize(200,100);
+        button.setLocation(getWidth()-400, getHeight()/2-100);
         button.setBackground(Color.pink);
         button.setOpaque(true);
         button.setBorderPainted(false);
         button.setFont(new Font("Arial", Font.BOLD, 18));
-        add(panel);
-        panel.add(button);
+       // add(panel);
+        add(button);
     }
+
+//    public void paint(Graphics g){
+//        g.drawImage();
+//    }
     public void next(){
         //go to game frame
     }
