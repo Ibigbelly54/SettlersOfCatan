@@ -7,25 +7,34 @@ public class RobFrame extends JFrame{
     private JPanel panel;
     private JButton button;
     private JLabel robber;
+    private Container win;
 
     public RobFrame(){
         super("Rob Frame");
-        setSize(1000, 1000);
+        win = getContentPane();
+        win.setLayout(null);
+
         setVisible (true);
         setResizable(false);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panel = new JPanel();
-        panel.setSize(50,50);
+        JPanel board = new BoardPanel();
+        board.setSize(getWidth(), getHeight());
+        win.add(board);
+        board.setVisible(true);
+
+        //  panel = new JPanel();
+        //  panel.setSize(500,1000);
         button = new JButton("Confirm");
-        button.setSize(50,10);
-        button.setBackground(Color.pink);
+        button.setSize(200,100);
+        button.setLocation(getWidth()-400, getHeight()/2-100);
+        button.setBackground(Color.green);
         button.setOpaque(true);
         button.setBorderPainted(false);
         button.setFont(new Font("Arial", Font.BOLD, 18));
-        robber = new JLabel();robber.setSize(642, 900);robber.setLocation(150,75);panel.add(robber);ImageIcon icon = new ImageIcon("src/Image/robber.png");robber.setIcon(icon);
-        add(panel);
-        panel.add(button);
+        // add(panel);
+        add(button);
     }
 
     public void next(){}

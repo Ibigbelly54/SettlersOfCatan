@@ -30,6 +30,7 @@ public class StartFrame extends JFrame  implements ActionListener {
         helpButton.setBounds(1000, 900, 200, 100);
         helpButton.setFont(new Font("TimesRoman", Font.BOLD, 30));
         win.add(helpButton);
+
         helpButton.addActionListener(this);
 
         try {

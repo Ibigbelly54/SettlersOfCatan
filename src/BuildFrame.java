@@ -13,6 +13,7 @@ public class BuildFrame extends JFrame{
     private JButton button;
     private int buildType;
     private Container win;
+    private JLabel label;
 
     public BuildFrame(){
         super("Build Frame");
@@ -40,6 +41,12 @@ public class BuildFrame extends JFrame{
         button.setFont(new Font("Arial", Font.BOLD, 18));
        // add(panel);
         add(button);
+
+        label = new JLabel("Pick a line segment to place your ");
+        label.setSize(500,50);
+        label.setLocation(getWidth()/3+50,0);
+        label.setFont(new Font("TimesRoman", Font.BOLD, 30));
+        add(label);
     }
 
 //    public void paint(Graphics g){
