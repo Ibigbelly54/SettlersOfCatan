@@ -14,4 +14,5 @@ public class DevelopmentCard {
         return playerPossesion;
     }
     public String getResource() { return resource; }
+    
 }

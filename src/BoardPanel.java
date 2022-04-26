@@ -37,28 +37,29 @@ public class BoardPanel extends JFrame  {
         int startLength = getWidth()/5;
         //first row
 
+
         for(int r=2; r<5; r++) {
-            BufferedImage image = board[r-2][0].getImage();
+            BufferedImage image = board[0][r-2].getImage();
             g.drawImage(image, r*setLength + startLength, startHeight, setLength, setHeight, null);
         }
         //second row
         for(int r=1; r<5; r++) {
-            BufferedImage image = board[r-1][1].getImage();
+            BufferedImage image = board[1][r-1].getImage();
             g.drawImage(image, r*setLength + setLength/2 + startLength, (int)(setLength * .86) + startHeight, setLength, setHeight, null);
         }
         //third row
         for(int r=1; r<6; r++) {
-            BufferedImage image = board[r-1][2].getImage();
+            BufferedImage image = board[2][r-1].getImage();
             g.drawImage(image, r*setLength + startLength, (int)(setLength * 1.72) + startHeight, setLength, setHeight, null);
         }
         //fourth row
         for(int r=1; r<5; r++) {
-            BufferedImage image = board[r-1][3].getImage();
+            BufferedImage image = board[3][r-1].getImage();
             g.drawImage(image, r*setLength + setLength/2 + startLength, (int)(setLength* 2.58) + startHeight, setLength, setHeight, null);
         }
         //fifth row
         for(int r=2; r<5; r++) {
-            BufferedImage image = board[r-2][4].getImage();
+            BufferedImage image = board[4][r-2].getImage();
             g.drawImage(image, r*setLength + startLength, (int)(setLength * 3.44) + startHeight, setLength, setHeight, null);
         }
 
