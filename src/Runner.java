@@ -25,8 +25,8 @@ public class Runner {
             }
             System.out.println();
         }
-//        output = new StartFrame();
-        BoardPanel pan = new BoardPanel();
+        output = new StartFrame();
+      //  BoardPanel pan = new BoardPanel();
         //build= new BuildFrame();
 
     }

@@ -55,6 +55,9 @@ public class StartFrame extends JFrame  implements ActionListener {
         if(e.getSource().equals(helpButton))
            new Helpmenu();
         if(e.getSource().equals(button))
+        {
             new BuildFrame();
+        }
+
     }
 }

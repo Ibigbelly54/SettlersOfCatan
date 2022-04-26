@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 
-public class BoardPanel extends JFrame  {
+public class BoardPanel extends JPanel  {
 
     // private static StartPanel panel;
     private Container win;
@@ -19,13 +19,7 @@ public class BoardPanel extends JFrame  {
     public BoardPanel()
     {
         super();
-        win = getContentPane();
-        win.setLayout(null);
-
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setVisible (true);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(500 , 500);
     }
 
     public void paint(Graphics g)

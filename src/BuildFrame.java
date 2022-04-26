@@ -19,11 +19,15 @@ public class BuildFrame extends JFrame{
         win = getContentPane();
         win.setLayout(null);
 
-        setSize(1000, 1000);
         setVisible (true);
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel board = new BoardPanel();
+        board.setSize(getWidth(), getHeight());
+        win.add(board);
+        board.setVisible(true);
 
       //  panel = new JPanel();
       //  panel.setSize(500,1000);
